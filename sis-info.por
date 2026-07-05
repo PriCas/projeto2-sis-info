@@ -12,7 +12,7 @@
     
     // --- NÍVEIS DE ACESSO E CONTROLE DO SISTEMA ---
     inteiro niveis_acesso[TOTAL_USUARIOS] 
-    inteiro g_qtd_usuarios = 5 // Começamos com os 5 usuários iniciais já definidos
+    inteiro g_qtd_usuarios = 5 // Começamos com os 5 usuários iniciais já definidos (medico,sst, lider, rh,equipes)
     inteiro g_nivel_logado = 0   //zero é sem acesso ao sistema
     logico g_sistema_rodando = verdadeiro // O laço que mantém o programa funcionando mesmo após o logout
     // -----------------------------------------------------------------------------------------------
@@ -22,7 +22,7 @@
     cadeia g_razao_social = "" 
     cadeia g_cnpj = "" 
 
-    // variáveis globais do cadastro de USUÁRIOS GESTORES
+    // variáveis globais do cadastro de USUÁRIOS GESTORES. Aqui foram criados 5 mas podem ser mais usuários
     cadeia g_user_equipes = ""   
     cadeia g_user_rh = ""        
     cadeia g_user_lideranca = "" 
@@ -46,20 +46,20 @@
 
 
     // Variáveis globais para a lógica do cadastro de setores
-    inteiro qtd_func_total = 0 // 
-    inteiro funcionarios_restantes
-    inteiro qtd_funcionarios_setor
-    cadeia nome_setor
-    inteiro contador_setores = 1
+    inteiro qtd_func_total = 0 // inicializa a quantidade de funcionarios em zero
+    inteiro funcionarios_restantes //variável que armazena temporáriamente quantos funcionários ainda nao foram alocados para seus setore
+    inteiro qtd_funcionarios_setor //quantos fucionários serão alocados naquele setor
+    cadeia nome_setor 
+    inteiro contador_setores = 1 // conta quantos setores foram cadastrados, inicia em 1
 
     // DADOS DO RELATÓRIO GLOBAL DA EMPRESA (Anônimo e Geral)
-    real g_soma_score_global = 0.0
-    inteiro g_total_pesquisas = 0
+    real g_soma_score_global = 0.0 // armazena a soma do score global da empresa
+    inteiro g_total_pesquisas = 0  // armazena a quantidade total de pesquisas respondidas
 
     // Vetores simulando o banco de dados de resultados INDIVIDUAIS
-    cadeia relatorios_setor[MAX_SETOR]
-    inteiro relatorios_criticidade[MAX_SETOR]
-    inteiro qtd_relatorios = 0
+    cadeia relatorios_setor[MAX_SETOR] // determina que a quantidade máxima de relatórios que podem ser emitidos é = ao numero de setores cadastrados
+    inteiro relatorios_criticidade[MAX_SETOR] //determina que a quntidade máxima de relatórios de criticidade que podem ser emitidos é = ao numero de setores
+    inteiro qtd_relatorios = 0 // inicializa em zero a quantidade setores
     
     // Matriz para acumular a soma das notas de cada dimensão por setor
     // 50 setores (linhas) x 7 dimensões de risco (colunas)
@@ -76,7 +76,7 @@
 
     funcao inicio()
     {
-      // [NOVO] Garante que todo o banco de dados comece zerado e limpo
+      // Garante que todo o banco de dados comece zerado e limpo 50 Representa linhas e 7 colunas
         para (inteiro i = 0; i < 50; i++) {
             respostas_por_setor[i] = 0
             para (inteiro j = 0; j < 7; j++) {
@@ -118,11 +118,11 @@
     }
 
     funcao tela_inicial() {
-      cadeia usuario_digitado
+      cadeia usuario_digitado // recebe o usuário digitado
       cadeia senha_digitada
-      logico login_sucesso = falso
+      logico login_sucesso = falso // o sistema permanece sem acesso até que o usuário digite a senha correta
 
-      enquanto (login_sucesso == falso)
+      enquanto (login_sucesso == falso) // garante o looping até que a senha correta seja digitada
       {
         escreva(" \n"," \n"," \n")
         escreva("  -----------------------------------------------------------------------------------------------------\n")
@@ -152,7 +152,7 @@
         escreva("  -----------------------------------------------------------------------------------------------------\n")
       
         limpa()
-
+        // "verificar_login' cria a variavel que vai ser usada para percorrer a lista de vetores ou arrays 
         login_sucesso = verificar_login(usuario_digitado, senha_digitada)
 
         se (login_sucesso == falso)
@@ -190,7 +190,7 @@
       niveis_acesso[4] = 1 
     }
 
-    // NOVA FUNÇÃO: Grava o novo usuário no vetor global para permitir o login
+    // FUNÇÃO CADASTRAR NOVO USUÁRIO: A lista de usuários recebe e Grava o novo usuário no vetor global para permitir o login
     funcao cadastrar_novo_usuario(cadeia novo_user, cadeia nova_senha, inteiro nivel)
     {
         se (g_qtd_usuarios < TOTAL_USUARIOS)
@@ -202,20 +202,20 @@
         }
     }
 
-    // NOVA FUNÇÃO: Lê o nível digitado, valida se é número e se é 1 ou 2
+    // FUNÇÃO VALIDAR NÍVEL: Lê o nível digitado, valida se é número e se é 1 APENAS RESULTADOS ou 2 ACESSO TOTAL
     funcao inteiro ler_nivel_valido()
     {
-        cadeia entrada
-        inteiro nivel_convertido
-        logico valido = falso
+        cadeia entrada // recebe reposta usuário
+        inteiro nivel_convertido // variável que armazena o que o usuário digitou e converte para inteiro
+        logico valido = falso // garante que nao terá acesso sem antes, validar 
 
         enquanto (valido == falso)
         {
             escreva("    Defina o Nível (1 - Apenas Resultados | 2 - Acesso Total): ")
             leia(entrada)
 
-            // Valida se a pessoa digitou algo que pode ser convertido em número
-            se (t.cadeia_e_inteiro(entrada, 10))
+            // Valida se a pessoa digitou algo que pode ser convertido em número 't.cadeia_e_inteiro' biblioteca do portugol e 10 é a base decimal
+            se (t.cadeia_e_inteiro(entrada, 10)) 
             {
                 nivel_convertido = t.cadeia_para_inteiro(entrada, 10)
                 
