@@ -3,10 +3,10 @@
     inclua biblioteca Util --> u
     inclua biblioteca Tipos --> t 
 
-    // Aumentamos o tamanho máximo para suportar os novos cadastros na memória
+    // Tamanho máximo para suportar os novos cadastros na memória
     const inteiro TOTAL_USUARIOS = 50  // total de usuários com login e senha para acessar o app
 
-    // Vetores globais para armazenar os cadastros de login
+    // Vetores globais para armazenar os cadastros de login e senha
     cadeia usuarios[TOTAL_USUARIOS] 
     cadeia senhas[TOTAL_USUARIOS] 
     
@@ -14,11 +14,11 @@
     inteiro niveis_acesso[TOTAL_USUARIOS] 
     inteiro g_qtd_usuarios = 5 // Começamos com os 5 usuários iniciais já definidos
     inteiro g_nivel_logado = 0   //zero é sem acesso ao sistema
-    logico g_sistema_rodando = verdadeiro 
+    logico g_sistema_rodando = verdadeiro // O laço que mantém o programa funcionando mesmo após o logout
     // -----------------------------------------------------------------------------------------------
 
     // DADOS DA EMPRESA
-    cadeia g_nome_empresa = "" 
+    cadeia g_nome_empresa = "" // "" para inicializar uma string vazia que mais tarde vai receber dados 
     cadeia g_razao_social = "" 
     cadeia g_cnpj = "" 
 
@@ -37,15 +37,16 @@
     cadeia pass_medicos = ""
 
     // variáveis globais do cadastro de SETORES
-    const inteiro MAX_SETOR = 50 
+    const inteiro MAX_SETOR = 50 // número maximo de setores que podem ser cadastrados. Alterar conforme necessidade.
+    const inteiro MAX_FUNCIONARIOS = 10000  // número maximo de funcionarios que podem ser cadastrados. Alterar conforme necessidade.
     cadeia setores[MAX_SETOR]  
-    inteiro funcionarios_setor[MAX_SETOR] 
-    inteiro respostas_por_setor[MAX_SETOR]
-    inteiro qtd_setores = 0
+    inteiro funcionarios_setor[MAX_FUNCIONARIOS] 
+    inteiro respostas_por_setor[MAX_FUNCIONARIOS]
+    inteiro qtd_setores = 0 // inicializa a quantidade de setores em zero
 
 
     // Variáveis globais para a lógica do cadastro de setores
-    inteiro qtd_func_total = 0
+    inteiro qtd_func_total = 0 // 
     inteiro funcionarios_restantes
     inteiro qtd_funcionarios_setor
     cadeia nome_setor
