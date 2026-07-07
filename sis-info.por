@@ -409,7 +409,7 @@
               }
 
               escreva("|================================================================|\n")
-              escreva("| FORMULÁRIO DE PESQUISA COMPLETO E FLUXO DE RISCO NR1           |\n")
+              escreva("| FORMULÁRIO DE PESQUISA COM 35 PERGUNTAS DE RISCO NR1           |\n")
               escreva("|================================================================|\n\n")
 
               escreva(" Empresa Avaliada: ", g_nome_empresa, " (CNPJ: ", g_cnpj, ")\n")
