@@ -414,7 +414,7 @@
 
               escreva(" Empresa Avaliada: ", g_nome_empresa, " (CNPJ: ", g_cnpj, ")\n")
               escreva("\n Escolha qual setor irá responder à pesquisa:\n")
-              
+              // Laço para mostrar todos os setores da empresa
               para(inteiro i = 0; i < qtd_setores; i++) {
                   escreva(" [", i+1, "] - ", setores[i], " (", funcionarios_setor[i], " funcionários registrados)\n")
               }
