@@ -39,7 +39,7 @@
     // variáveis globais do cadastro de SETORES
     const inteiro MAX_SETOR = 50 // número maximo de setores que podem ser cadastrados. Alterar conforme necessidade.
     const inteiro MAX_FUNCIONARIOS = 10000  // número maximo de funcionarios que podem ser cadastrados. Alterar conforme necessidade.
-    cadeia setores[MAX_SETOR]  
+    cadeia setores[MAX_SETOR]  // Matriz que recebe os nomes dos setores, limitado à quantidade máxima e setores.
     inteiro funcionarios_setor[MAX_FUNCIONARIOS] 
     inteiro respostas_por_setor[MAX_FUNCIONARIOS]
     inteiro qtd_setores = 0 // inicializa a quantidade de setores em zero
@@ -419,28 +419,33 @@
                   escreva(" [", i+1, "] - ", setores[i], " (", funcionarios_setor[i], " funcionários registrados)\n")
               }
 
-              cadeia entrada_setor
-              inteiro indice_escolhido = -1
-              logico setor_valido = falso
+              cadeia entrada_setor  //var que recebe a resposta do usuário
+              inteiro indice_escolhido = -1 // variavel que garante que o for começe a percorrer a lista na posição 0
+              logico setor_valido = falso // inicializa a logica como falsa para apresentar a mensagem de solicitando a escolha do setor
 
+              // cria o looping da pergunta 
               enquanto (setor_valido == falso) {
                   escreva("\n Digite o número correspondente ao setor: ")
                   leia(entrada_setor)
                   
+                  //valida se o que o valor digitado pode ser convertido para inteiro nabase 10
                   se (t.cadeia_e_inteiro(entrada_setor, 10)) {
                       inteiro op = t.cadeia_para_inteiro(entrada_setor, 10)
                       se (op >= 1 e op <= qtd_setores) {
                           indice_escolhido = op - 1
                           setor_valido = verdadeiro
-                      } senao {
+                      }
+                      // apresenta mensagem de erro , caso o valor digitado nao corresponda a nenhum setor
+                       senao {
                           escreva(" ❌ Setor não encontrado. Escolha um número válido da lista.\n")
                       }
                   } senao {
                       escreva(" ❌ Entrada inválida. Digite apenas números.\n")
                   }
               }
-
+              // nome_setor_pesquisa recebe temporariamente o valor do array setores no indice escolhido
               cadeia nome_setor_pesquisa = setores[indice_escolhido]
+              // tamanho_setor recebe a quantidade de funcionários do setor 
               inteiro tamanho_setor = funcionarios_setor[indice_escolhido]
 
               limpa()
@@ -474,7 +479,7 @@
               escreva(" INSTRUÇÕES - PARTE 1: Responda usando a escala de FREQUÊNCIA:\n")
               escreva(" 1 = Nunca  | 2 = Raramente  |  3 = Às vezes  |  4 = Frequentemente  | 5 = Sempre\n")
               escreva("========================================================================================\n\n")
-              
+              // perguntas invertidas
               para(inteiro p = 1; p <= 35; p++) {
                 se(p == 24) {
                     limpa()
@@ -484,7 +489,7 @@
                     escreva("===========================================================================================\n\n")
                 }
 
-                logico resposta_valida = falso
+                logico resposta_valida = falso //para garantir que as perguntas inicien
                 
                 enquanto (resposta_valida == falso) {
                     escolha(p) {
@@ -526,11 +531,11 @@
                     }
 
                     leia(nota_auxiliar)
-                    
+                    // usa biblioteca t.cadeia_e_inteiro do portugol para validar se o que foi digitado pode ser convertido para inteiro e converte na base 10
                     se (t.cadeia_e_inteiro(nota_auxiliar, 10)) {
                         nota_digitada = t.cadeia_para_inteiro(nota_auxiliar, 10)
                         se (nota_digitada >= 1 e nota_digitada <= 5) {
-                          resp[p] = nota_digitada
+                          resp[p] = nota_digitada 
                           resposta_valida = verdadeiro 
                         } senao {
                           escreva("\n❌ ERRO: Digite apenas uma opção entre 1 e 5!\n\n")
@@ -541,12 +546,13 @@
                 }
               }
               limpa()
-
+              // armazenam as repostas no vetor resp na posição da pergunta N (lógica das perguntas invertidas)
               resp[1] = 6 - resp[1]   resp[2] = 6 - resp[2]   resp[3] = 6 - resp[3]   resp[4] = 6 - resp[4]
               resp[19] = 6 - resp[19] resp[20] = 6 - resp[20] resp[21] = 6 - resp[21] resp[22] = 6 - resp[22]
               resp[24] = 6 - resp[24] resp[25] = 6 - resp[25] resp[34] = 6 - resp[34] resp[35] = 6 - resp[35]
               resp[28] = 6 - resp[28]
-
+              
+              // Calcula e Armazena as médias divididas em 7 Categorias
               real d_demandas = (resp[1] + resp[2] + resp[3] + resp[4] + resp[24] + resp[25]) / 6.0
               real d_controle = (resp[5] + resp[6] + resp[7] + resp[8] + resp[9] + resp[10]) / 6.0
               real d_apoio_chefia = (resp[11] + resp[12] + resp[13] + resp[14]) / 4.0
@@ -556,7 +562,7 @@
               real d_mudancas = (resp[31] + resp[32] + resp[33]) / 3.0
 
 
-              
+              // score_global recebe a média das categorias dividida pela quantidade de categorias
               real score_global = (d_demandas + d_controle + d_apoio_chefia + d_apoio_colegas + d_relacionamentos + d_papel + d_mudancas) / 7.0 
               
               // ====================================================================
