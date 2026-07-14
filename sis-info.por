@@ -1,3 +1,17 @@
+/*  
+    Jovem Programador 2026 (SEPROSC / SENAC) 
+    Professor: Anderson Doneda (anderson.doneda@prof.sc.senac.br)
+    
+    Equipe desenvolvedora:
+    Eduardo Zanatta (zanattamach@gmail.com)
+    Kevin Hmann (kevin.hmann@gmail.com)
+    Priscila Ferreira Castaldo (pri1.castaldo@gmail.com)
+    Victor Ferraz (victorfontanaa@gmail.com)
+       
+    Data: 30/06/2026 
+*/
+
+  
   programa {
 
     inclua biblioteca Util --> u
