@@ -1,11 +1,11 @@
 /*  
     Jovem Programador 2026 (SEPROSC / SENAC) 
+    Projeto 2: Sistema de Informação
     Professor: Anderson Doneda (anderson.doneda@prof.sc.senac.br)
-    
-    Equipe desenvolvedora:
+    Equipe Desenvolvedora:
     Eduardo Zanatta (zanattamach@gmail.com)
     Kevin Hmann (kevin.hmann@gmail.com)
-    Priscila Ferreira Castaldo (pri1.castaldo@gmail.com)
+    Priscila Castaldo (pri1.castaldo@gmail.com)
     Victor Ferraz (victorfontanaa@gmail.com)
        
     Data: 30/06/2026 
